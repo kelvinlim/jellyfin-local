@@ -1,0 +1,44 @@
+# Jellyfin Media Server Container Configuration
+# 
+# This docker-compose file runs a Jellyfin media server using Podman.
+# Jellyfin is a free, open-source media server and streaming platform.
+#
+# Start: podman compose up -d
+# Stop:  podman compose down
+# Logs:  podman logs jellyfin
+# URL:   http://localhost:8096
+
+version: '3'
+
+services:
+  jellyfin:
+    # Use official Jellyfin image from Docker Hub
+    image: jellyfin/jellyfin
+    
+    # Container name for easy reference
+    container_name: jellyfin
+    
+    # Use host network for best performance
+    # Jellyfin will be accessible at http://localhost:8096
+    network_mode: host
+    
+    # Volume mounts - Persist data across container restarts
+    volumes:
+      # Configuration and database (IMPORTANT - contains all settings)
+      # Maps ./config directory to /config inside container
+      - ./config:/config
+      
+      # Cache directory (thumbnails, transcodes, metadata)
+      # Safe to delete to free disk space; will regenerate on demand
+      - ./cache:/cache
+      
+      # Media library (movies, shows, music)
+      # Container sees this as /media
+      # When adding libraries in Jellyfin UI, use /media/Shows and /media/Movies
+      - /home/kelvin/Jellyfin/Media:/media
+    
+    # Restart policy
+    # 'unless-stopped' = automatically restart unless manually stopped
+    # Other options: 'no', 'always', 'on-failure'
+    restart: 'unless-stopped'
+    restart: 'unless-stopped'
