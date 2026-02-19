@@ -58,7 +58,7 @@ services:
     volumes:
       - ./config:/config                  # Persist config
       - ./cache:/cache                    # Persist cache/transcodes
-      - /home/kelvin/Jellyfin/Media:/media  # Media library
+      - /home/kelvin/Projects/jellyfin-local/Media:/media  # Media library
     restart: 'unless-stopped'             # Auto-restart on failure
 ```
 
@@ -75,7 +75,7 @@ When Jellyfin runs in the container, paths are remapped:
 |---|---|---|
 | `./config` | `/config` | Jellyfin settings & database |
 | `./cache` | `/cache` | Thumbnails, metadata, transcodes |
-| `/home/kelvin/Jellyfin/Media` | `/media` | Your media library |
+| `/home/kelvin/Projects/jellyfin-local/Media` | `/media` | Your media library |
 
 **Important**: When adding libraries in Jellyfin's web UI, use the **container paths** (`/media/Shows`, `/media/Movies`), not the host paths.
 

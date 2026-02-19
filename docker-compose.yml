@@ -35,7 +35,8 @@ services:
       # Media library (movies, shows, music)
       # Container sees this as /media
       # When adding libraries in Jellyfin UI, use /media/Shows and /media/Movies
-      - /home/kelvin/Jellyfin/Media:/media
+      #- /home/kelvin/Jellyfin/Media:/media
+      - /home/kelvin/Projects/jellyfin-local/Media:/media
     
     # Restart policy
     # 'unless-stopped' = automatically restart unless manually stopped
